@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --cream: #fff8ec;
+  --yellow: #ffc93c;
+  --orange: #ff8a5b;
+  --blue: #5bc0eb;
+  --green: #8bd450;
+  --pink: #ffb6d9;
+  --lavender: #c9b6ff;
+  --ink: #2e2e2e;
+  --muted: #77736b;
+  --white: #ffffff;
+  --shadow-soft: 0 10px 30px rgba(46, 46, 46, 0.08);
+  --shadow-lift: 0 18px 40px rgba(46, 46, 46, 0.12);
+  --radius-14: 14px;
+  --radius-22: 22px;
+  --radius-32: 32px;
+  --radius-44: 44px;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-sans);
+  background: var(--cream);
+  color: var(--ink);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  background: var(--cream);
+}
+
+body {
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.label-mono {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.panel-glass {
+  background: color-mix(in srgb, var(--white) 82%, transparent);
+  border: 1px solid color-mix(in srgb, var(--white) 90%, var(--ink));
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(14px);
+}
+
+.blob {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(40px);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.fade-in {
+  animation: fade-in 280ms ease-out;
+}
+
+.btn-press:active {
+  transform: scale(0.96);
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, var(--yellow), var(--orange), var(--blue));
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

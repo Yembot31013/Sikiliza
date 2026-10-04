@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[project]
+name = "sikiliza"
+version = "0.1.0"
+description = "Realtime Swahili to English captions for live streams"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.32.0",
+  "pydantic-settings>=2.6.0",
+  "httpx>=0.27.0",
+  "python-dotenv>=1.0.0",
+  "websockets>=14.0",
+]
+
+[project.optional-dependencies]
+local = ["faster-whisper>=1.1.0"]
+dev = [
+  "pytest>=8.3.0",
+  "pytest-asyncio>=0.24.0",
+  "pytest-cov>=5.0.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["app"]
+omit = ["app/providers/local_whisper.py"]
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true
